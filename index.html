@@ -1,31 +1,125 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Login Key Aplikasi</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CyberOS Pro</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h2>Masukkan Key Akses</h2>
+    <div id="status-bar">
+    <span id="os-user">USER: ANON</span>
+    <div id="wanted-bar">
+        <span id="star1">★</span><span id="star2">★</span><span id="star3">★</span>
+    </div>
+    <span id="os-wallet">0.0000 BTC</span>
+</div>
 
-  <input
-    id="key"
-    type="text"
-    placeholder="Masukkan key di sini"
-    style="width: 100%; padding: 10px;"
-  >
 
-  <br><br>
+    <div class="app-grid">
+        <div class="app" onclick="openWin('win-terminal')">
+            <div class="icon-box">
+                <img src="https://cdn-icons-png.flaticon.com/512/6062/6062646.png">
+            </div>
+            <span>Terminal</span>
+        </div>
+        <div class="app" onclick="openWin('win-social')">
+            <div class="icon-box">
+                <img src="https://cdn-icons-png.flaticon.com/512/1041/1041916.png">
+            </div>
+            <span>CyberGram</span>
+        </div>
+        <div class="app" onclick="openWin('win-market')">
+            <div class="icon-box">
+                <img src="https://cdn-icons-png.flaticon.com/512/1162/1162499.png">
+            </div>
+            <span>Market</span>
+        </div>
+    <div class="app" onclick="openWin('win-mining')">
+        <div class="icon-box"><img src="https://cdn-icons-png.flaticon.com/512/3665/3665371.png"></div>
+        <span>Miner</span>
+    </div>
+</div>
+<div class="app" onclick="openWin('win-browser')">
+    <div class="icon-box"><img src="https://cdn-icons-png.flaticon.com/512/3062/3062634.png"></div>
+    <span>Browser</span>
+</div>
 
-  <button onclick="login()" style="padding: 10px; width: 100%;">
-    Masuk
-  </button>
+          <div id="win-browser" class="window">
+    <div class="win-header">WEB_NAVIGATOR <span onclick="closeWin('win-browser')">[X]</span></div>
+    
+    <div style="background:#f1f1f1; padding:10px; display:flex; gap:5px; border-bottom:1px solid #ccc;">
+        <input type="text" id="browser-search" placeholder="Cari di sini (bank, shop, pemerintah...)" style="flex:1; padding:5px; border-radius:15px; border:1px solid #ccc; outline:none;">
+        <button onclick="searchEngine()" style="padding:5px 15px; border-radius:15px; cursor:pointer; background:#4285f4; color:white; border:none;">Cari</button>
+    </div>
 
-  <p id="msg"></p>
+    <div id="web-content" class="win-content" style="background:white; color:#333; overflow-y:auto; height:300px; padding:15px; font-family:Arial, sans-serif;">
+        <center>
+            <h1 style="color:#4285f4; font-size:40px; margin-top:50px;">Cyber<span style="color:#ea4335">Search</span></h1>
+            <p>Ketik kata kunci untuk mulai menjelajah dunia virtual.</p>
+        </center>
+    </div>
+</div>
 
-  <!-- PANGGIL SCRIPT -->
-  <script src="script.js"></script>
+<div id="win-mining" class="window">
+    <div class="win-header">HASH_MINER_v1.0 <span onclick="closeWin('win-mining')">[X]</span></div>
+    <div class="win-content">
+        <div class="miner-stats">
+            <h2 id="miner-status">M1N1N6</h2>
+            <p>Suhu CPU: <span id="cpu-temp">30.0</span>°C</p>
+            <p>Hashrate: <span id="hash-rate">0.0</span> MH/s</p>
+        </div>
+        <button class="buy-btn" id="mine-btn" onclick="toggleMining()">START MINING</button>
+        <hr border="1" color="#00ff41" style="margin: 20px 0;">
+        <small style="color: #888;">Info: Mining legal beban panasnya tinggi. Upgrade CPU di Market untuk hashrate lebih besar.</small>
+    </div>
+</div>
 
+    <div id="win-terminal" class="window">
+        <div class="win-header">TERMINAL_CORE <span onclick="closeWin('win-terminal')">[X]</span></div>
+        <div class="win-content" id="term-out">
+            <div>Welcome to Cyber-OS. Type 'help' to start.</div>
+        </div>
+        <div class="input-area">
+            <span>root@anon:~$ </span>
+            <input type="text" id="cmd-input" autofocus autocomplete="off">
+        </div>
+    </div>
+<div id="win-market" class="window">
+    <div class="win-header">BLACK_MARKET <span onclick="closeWin('win-market')">[X]</span></div>
+    <div class="win-content" id="market-list">
+        </div>
+</div>
+
+<div id="win-mining" class="window">
+    <div class="win-header">HASH_MINER_V1 <span onclick="closeWin('win-mining')">[X]</span></div>
+    <div class="win-content">
+        <div class="miner-stats">
+            <h2 id="miner-status">OFFLINE</h2>
+            <p>Suhu: <span id="cpu-temp">30</span>°C</p>
+            <p>Hashrate: <span id="hash-rate">0</span> MH/s</p>
+        </div>
+        <button class="buy-btn" id="mine-btn" onclick="toggleMining()">MULAI MINING (LEGAL)</button>
+        <p style="font-size: 10px; margin-top: 15px;">*Mining ilegal bisa dilakukan via terminal dengan perintah 'exploit'.</p>
+    </div>
+</div>
+
+    <div id="win-social" class="window">
+        <div class="win-header">CYBER_GRAM <span onclick="closeWin('win-social')">[X]</span></div>
+        <div class="win-content" id="social-feed">
+            <p style="color:gray italic">Memuat percakapan komunitas...</p>
+        </div>
+    </div>
+
+<div id="news-ticker" style="position:fixed; bottom:0; width:100%; background:#050505; border-top:1px solid var(--neon); padding:5px; font-size:10px; z-index:500;">
+    <marquee scrollamount="3" id="news-text">
+        [BERITA] Nilai BTC hari ini stabil di angka $65,000 | Polisi Cyber meningkatkan patroli di jaringan botnet | White Hat Hacker temukan celah di bank lokal...
+    </marquee>
+</div>
+
+    <script src="data.js"></script>
+    <script src="engine.js"></script>
+    <script src="terminal.js"></script>
 </body>
 </html>
