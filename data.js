@@ -80,6 +80,5 @@ window.webServers = {
 
 
 
-
 // Pastikan gameData mendukung level hacking
 if (!gameData.hackingSkill) gameData.hackingSkill = 1;
